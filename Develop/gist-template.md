@@ -46,6 +46,7 @@ After reading through this tutorial, we should have the knowledge needed to unde
 - [Boundaries](#boundaries)
 - [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Final Example](#final-example)
 <br>
 <br>
 <br>
@@ -285,13 +286,85 @@ The word border symbol refines match results to only include results when the pr
 
 ### Back-references
 
-Back-references are used for
+Back-references are used for reusing previous capturing groups by referencing them again later in the regex.
+
+See the following for commonly used symbols:
+
+`\1` - back slash number
+
+Back slash number symbol would become the indicator reference for a previously captured group. Consider the following:
+
+`([xyz])\1` - the regex would indentify "xyz" as the captured group and the "\1" would actually be considered "xyz" again when being used for searching matches. 
 
 ### Look-ahead and Look-behind
 
-Look-ahead and Look-behind is used for 
+Look-ahead and Look-behind is used for modifying match results to consider if specified character(s) are directly following or preceding a matching character. 
+
+See the following commonly used symbols:
+
+`(?=)` - look ahead
+`(?<=)` - look behind
+
+The look ahead will search for matches and then verfiy the following character(s). Consider the following:
+`a(?=b)`- the regex will search for instances of "a" but only if the following character is "b".
+
+The look behind will search for matches and then verfiy the preceding character(s). Consider the following:
+`(?<=a)b`- the regex will search for instances of "a" but only if the preceding character is "a".
+
+
+### Final Example
+
+We have come to the end of the tutorial. Let's revisit our regex for emails and see if we can understand what it is doing!
+
+Matching an Email – 
+```
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+```
+
+Perhaps we can go step-by-step through the symbols and see what each of them do. Perhaps
+
+```
+/ - denotes the boundary of the regex
+^ - meta escape that asserts the starting position of the string
+( - begins first capturing group
+[ -begins character class
+a-z - matches any single character "a" through "z"
+0-9 - matches any single digit "0" through "9"
+_ - matches an underscore
+\. - matches a . symbol
+- - matches a - symbol
+] - end character class
++ - greedy quantifier to include any number of preceding character class matches
+) - end first capturing group
+
+@ - matches a @ symbol
+
+( - begin second capturing group
+[ - begin character class
+\d - any single digit
+a-z - matches any single character "a" through "z"
+\. - matches a . symbol
+- - matches a - symbol
+] - end character class
++ - greedy quantifier to include an number of preciding character class matches
+) - end second capture group
+\. - matches a . symbol
+( - begin third capture group
+[ - begin character class
+a-z - matches any single character "a" through "z"
+\. - matches a . symbol
+] - end character class
+{2,6} - matches previous character class between 2-6 times
+) - end third capture group
+$ - meta escape that asserts the ending position of the string
+/ - denotes the boundary of the regex
+```
+
 
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Cameron Sickler - Full-Stack Computer Coding Student
+Graduation Date - Aug 4th 2022
+GitHub: CameronSickler
+LinkedIn: linkedin.com/in/cameron-sickler-a17764106
