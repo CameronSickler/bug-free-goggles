@@ -145,24 +145,152 @@ The curly brackets/braces are used to look for specific quantities of character(
 `abc{1-5}` -  The regex would search for matching instances where "ab" is followed by one instance of "c" or more, but not containing more than five instances of "c".
 <br>
 <br>
+<br>
 
 ### OR Operator
+<br>
+
+OR Operators are used to look for matches with one or another character. 
+<br>
+<br>
+See the following commonly used Or operator symbols:
+<br>
+<br>
+
+`( | )` - parenthesis vertical pipe parenthesis
+<br>
+
+`[]` - square brackets
+<br>
+<br>
+
+The parenthesis vertical pipe parenthesis symbols look for matches of a character that directly preceeds the pipe OR a character that directly follows the pipe. Consider the following:
+
+`a(b|c)` - The regex would search for matching instances where "a" immeidately followed by either "b" or "c".
+<br>
+<br>
+
+The square brackets look for matches of one or the other characters inside the brackets. Consider the following:
+<br>
+
+`a[bc]` - The regex would search for matching instances of "a" immediately followed by either "b" or "c" but the "b" or "c" would not be captured.
+<br>
+<br>
 
 ### Character Classes
 
+Character classes are used for searching specific categories or types of characters. 
+
+See the following commonly used character classes symbols:
+
+`\d` - digit character
+`\w` - word character
+`\s` - whitespace character
+`.` - period character
+
+The digit character will search for matches of a single character that is a digit. Consider the following:
+
+`abc\d` - The regex will search for any instance of a single digit that immediately follows "abc".
+
+The word character will search for matches of an alphanumeric character (which includes the underscore symbol). Consider the following:
+
+`abc\w` - The regex will search for any instance of an alphanumeric character the immediately follows "abc".
+
+The whitespace character will search for matches of any whitespace (which includes tabs and line breaks). Consider the following:
+
+`abc\s` - The regex will search for any instance of whitespace that immediately follows "abc".
+
+The period symbol will search for matches of any character. An example is not neccessary for this symbol.
+
 ### Flags
+
+Flags are used for changing the default search pattern of a regex. 
+
+See the following commonly used flag symbols:
+
+`i` - ignore casing
+`g` - search all occurances
+`m` - multi-line
+
+The ignore casing flag remove case sensitivity from the default search perameters. 
+
+The search all occurances flag will change the default search parameters to instead search all possible matches in a string. 
+
+The multi-line flag enables ^ and $ to notate the start and end of a line instead of the entire string.
 
 ### Grouping and Capturing
 
+Grouping and Capturing is used for treating multiple characters as a single unit. 
+
+See the following for commonly used grouping and capturing syntax:
+
+`()` - parenthesis
+`?:` - disable capture group
+`?<>` - name group
+
+The parenthesis create a capture group. Consider the following:
+
+`a(bc)` - the regex will look for all instances of "a" that are followed by "bc".
+
+The disable capture group removes the capture group from being included in the match results. Consider the following:
+
+`1(?:23)*` - the regex will look for all instances of "1" that preceed "23" but the "23" is not included in the result. 
+
+The name group provides a name for the character(s) that is between the less than greater than symbols. Consider the following:
+
+`a(?<foo>bc)` - the regex will look for all instances of "a" that is followed by "bc" and the resulting match(s) is a value and the key is foo.
+
 ### Bracket Expressions
+Bracket Expressions are used for matching a sepcific set of single characters or it may match a set of characters. 
+
+See the following commonly used symbol:
+
+`[]` - square brackets
+
+The square brackets match string values based on the characters inside the brackets. Consider the following:
+
+`[abc]` - the regex will search for string matches that contain "a" or "a b" or "a c".
+
+`[0-9]` - the regex will search for string matches that contains a character from 0-9.
+
 
 ### Greedy and Lazy Match
+Greedy and Lazy are terms to describe the size of a match result. By default quantifiers * + {} are considered greedy because matches can be expanded as far as possible through a given string. These greedy quantifiers can be refined to render more specific match results which would then be considered lazy operators. Adding a ? symbol can be used to refine match results.
+
+Consider the following example:
+
+`<h1> Hello World </h1>` - if a regex such as `<.+>` was used, the match would render the entire string value because it includes all characters between the very first less than symbol and the very last greater than symbol.
+
+HOWEVER
+
+if a regex such as `<.+?>` was used, the match would render only the `<h1>` and `</h1>` from the string because the ? is refining the search to only include all characters but from within a given set of greater than less than symbols. 
+
 
 ### Boundaries
+Boundaries are used for refining match results to look for characters that have specific types of characters that precede or follow.
+
+See the following commonly used symbols:
+
+`\b` - non-word border
+`\B` - word border
+
+The non-word border symbol refines match results to only include results when the preceding and following characters on either side of the result are non-word characters. Consider the following:
+
+`\b123\b` - the regex will search for all instances of "123" but only if a non-word character preceeds the beginning of the string AND another follows the end of the string. 
+
+The word border symbol refines match results to only include results when the preceding and following characters on either side of the result are word characters. Consider the following:
+
+`\B123\B` - the regex will search for all instances of "123" but only if a word character preceeds the beginning of the string AND another follows the end of the string. 
+
 
 ### Back-references
 
+Back-references are used for
+
 ### Look-ahead and Look-behind
+
+Look-ahead and Look-behind is used for 
+
 
 ## Author
 
